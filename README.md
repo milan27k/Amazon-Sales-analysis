@@ -1,5 +1,5 @@
 # Amazon-Sales-analysis
-# 📊 Amazon Sales Analysis Dashboard
+# Amazon Sales Analysis Dashboard
 
 ## 🔷 Project Overview
 
