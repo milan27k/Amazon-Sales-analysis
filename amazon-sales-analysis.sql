@@ -27,15 +27,15 @@ from amazon_sales_cleaned
 group by Status;
 
 #Q6-What is the total revenue lost due to cancelled orders?
-select SUM(Amount) AS total_revenue
+select SUM(Amount) AS revenue_loss
 from amazon_sales_cleaned
 WHERE Status = 'Cancelled'
 ;
 
 #Q7-What is the overall cancellation rate of orders?
-select Size,ROUND(sum(Amount),2) AS total_revenue
+select
+	ROUND(COUNT(CASE WHEN Status = 'Cancelled' THEN 1 END),2) * 100 / COUNT(*) AS cancellation_rate
 from amazon_sales_cleaned
-group by size
 ;
 
 #Q9- Which states contribute the most to overall revenue?
@@ -65,7 +65,7 @@ WHERE rankk <= 3
 #Q12-Find order value segmentation 
 select
 	case
-		WHEN Amount > 500 then 'low value'
+		WHEN Amount < 500 then 'low value'
         WHEN Amount BETWEEN 500 AND 1000 THEN 'medium value'
         ELSE 'high value'
         END AS order_segmentation
